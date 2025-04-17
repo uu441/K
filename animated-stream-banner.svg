@@ -39,12 +39,13 @@
   
   <!-- Platform containers -->
   <g id="twitch-container">
-    <!-- Twitch logo -->
-    <path d="M120 75 L120 115 L140 115 L140 125 L150 115 L165 115 L180 100 L180 75 Z M175 80 L175 98 L165 108 L150 108 L150 80 Z M160 87 L160 100 L167 100 L167 87 Z M145 87 L145 100 L152 100 L152 87 Z" fill="url(#twitch-gradient)">
+    <!-- Twitch official logo -->
+    <path d="M124 70 v45 h15 v-45 h-15 z M154 70 v45 h15 v-45 h-15 z" fill="white"/>
+    <path d="M110 60 L110 115 L135 115 L135 130 L150 115 L175 115 L195 95 L195 60 Z M185 70 L185 90 L170 105 L145 105 L145 70 Z" fill="url(#twitch-gradient)">
       <animate attributeName="opacity" values="1;0.7;1" dur="2s" begin="0s" repeatCount="indefinite" />
     </path>
     <!-- Username placeholder -->
-    <text x="150" y="135" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">@YourTwitch</text>
+    <text x="150" y="135" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">@223V</text>
     <!-- Glowing star effect -->
     <polygon id="twitch-star" points="195,90 200,75 205,90 220,95 205,100 200,115 195,100 180,95" fill="white" filter="url(#glow)" opacity="0">
       <animate attributeName="opacity" values="0;0.8;0" dur="2s" begin="0s" repeatCount="indefinite" />
@@ -52,26 +53,34 @@
   </g>
   
   <g id="kick-container">
-    <!-- Kick logo (stylized K) -->
-    <path d="M380 75 L380 115 L390 115 L390 100 L395 100 L405 115 L418 115 L405 96 L418 75 L405 75 L395 90 L390 90 L390 75 Z" fill="url(#kick-gradient)">
-      <animate attributeName="opacity" values="1;0.7;1" dur="2s" begin="0.5s" repeatCount="indefinite" />
-    </path>
+    <!-- KICK text properly styled -->
+    <text x="400" y="95" font-family="Arial Black, Impact, sans-serif" font-weight="bold" font-size="28" fill="#53FC18" text-anchor="middle" stroke="#1E8000" stroke-width="0.5">KICK</text>
     <!-- Username placeholder -->
-    <text x="400" y="135" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">@YourKick</text>
+    <text x="400" y="135" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">@UU66</text>
     <!-- Glowing star effect -->
     <polygon id="kick-star" points="445,90 450,75 455,90 470,95 455,100 450,115 445,100 430,95" fill="white" filter="url(#glow)" opacity="0">
       <animate attributeName="opacity" values="0;0.8;0" dur="2s" begin="0.5s" repeatCount="indefinite" />
     </polygon>
+    <!-- Add animation to KICK -->
+    <animate xlink:href="#kick-text" attributeName="fill-opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" />
   </g>
   
   <g id="tiktok-container">
-    <!-- TikTok logo stylized -->
-    <path d="M650 75 C650 75, 645 75, 640 80 C635 85, 635 90, 635 90 L635 105 C635 105, 635 110, 640 115 C645 120, 650 120, 650 120 L665 120 C665 120, 670 120, 675 115 C680 110, 680 105, 680 105 L680 90 C680 90, 680 85, 675 80 C670 75, 665 75, 665 75 Z" fill="url(#tiktok-gradient)">
+    <!-- TikTok official logo -->
+    <path d="M630 75 L640 75 L640 105 C640 112, 635 118, 627 118 C619 118, 614 112, 614 105 C614 98, 619 92, 627 92 L627 102 C623 102, 622 104, 622 105 C622 106, 623 108, 627 108 C631 108, 632 106, 632 105 L632 75 Z" fill="black">
       <animate attributeName="opacity" values="1;0.7;1" dur="2s" begin="1s" repeatCount="indefinite" />
     </path>
-    <path d="M647 83 L647 106 M657 83 L657 106 M640 90 L680 90 M640 99 L680 99" stroke="white" stroke-width="2" fill="none" />
+    <path d="M640 75 L640 85 C648 85, 655 81, 659 75 L649 75 C647 79, 644 81, 640 81 Z" fill="#00f2ea">
+      <animate attributeName="opacity" values="1;0.7;1" dur="2s" begin="1s" repeatCount="indefinite" />
+    </path>
+    <path d="M640 95 L640 75 L650 75 L650 95 C650 110, 638 123, 623 123 C608 123, 596 110, 596 95 C596 80, 608 67, 623 67 L623 77 C615 77, 608 85, 608 95 C608 105, 615 113, 623 113 C631 113, 638 105, 638 95 Z" fill="#ff004f">
+      <animate attributeName="opacity" values="1;0.7;1" dur="2s" begin="1s" repeatCount="indefinite" />
+    </path>
+    <path d="M665 77 C670 77, 675 75, 678 70 L668 70 C665 73, 661 73, 658 70 L658 100 C658 110, 650 118, 640 118 C630 118, 622 110, 622 100 C622 90, 630 82, 640 82 L640 92 C635 92, 632 95, 632 100 C632 105, 635 108, 640 108 C645 108, 648 105, 648 100 L648 70 Z" fill="white">
+      <animate attributeName="opacity" values="1;0.7;1" dur="2s" begin="1s" repeatCount="indefinite" />
+    </path>
     <!-- Username placeholder -->
-    <text x="655" y="135" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">@YourTikTok</text>
+    <text x="655" y="135" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">@.7767</text>
     <!-- Glowing star effect -->
     <polygon id="tiktok-star" points="695,90 700,75 705,90 720,95 705,100 700,115 695,100 680,95" fill="white" filter="url(#glow)" opacity="0">
       <animate attributeName="opacity" values="0;0.8;0" dur="2s" begin="1s" repeatCount="indefinite" />
