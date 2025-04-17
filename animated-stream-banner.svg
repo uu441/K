@@ -1,231 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 1920 200" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    @keyframes pulse {
-      0% { opacity: 0.8; }
-      50% { opacity: 1; }
-      100% { opacity: 0.8; }
-    }
-    
-    @keyframes glow {
-      0% { filter: drop-shadow(0 0 3px currentColor); }
-      50% { filter: drop-shadow(0 0 8px currentColor); }
-      100% { filter: drop-shadow(0 0 3px currentColor); }
-    }
-    
-    @keyframes live-pulse {
-      0% { r: 15; fill: #ff3333; }
-      50% { r: 18; fill: #ff5555; }
-      100% { r: 15; fill: #ff3333; }
-    }
-    
-    @keyframes border-flow {
-      0% { stroke-dashoffset: 0; }
-      100% { stroke-dashoffset: 100; }
-    }
-    
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    @keyframes fade-in-out {
-      0% { opacity: 0.1; }
-      50% { opacity: 0.3; }
-      100% { opacity: 0.1; }
-    }
-    
-    .twitch-glow {
-      color: #9146FF;
-      animation: glow 3s infinite ease-in-out;
-    }
-    
-    .kick-glow {
-      color: #52E466;
-      animation: glow 3s infinite ease-in-out;
-    }
-    
-    .pulse-bg {
-      animation: pulse 2s infinite ease-in-out;
-    }
-    
-    .live-dot {
-      animation: live-pulse 1.5s infinite ease-in-out;
-    }
-    
-    .border-animate {
-      stroke-dasharray: 10, 5;
-      animation: border-flow 20s infinite linear;
-    }
-    
-    .twitch-rotate {
-      transform-origin: 480px 100px;
-      animation: rotate 60s infinite linear;
-    }
-    
-    .kick-rotate {
-      transform-origin: 1440px 100px;
-      animation: rotate 60s infinite linear reverse;
-    }
-    
-    .fade-in-out {
-      animation: fade-in-out 4s infinite ease-in-out;
-    }
-    
-    .fade-delay-1 {
-      animation-delay: 1s;
-    }
-    
-    .fade-delay-2 {
-      animation-delay: 2s;
-    }
-  </style>
-
-  <!-- خلفية رئيسية متدرجة -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 80">
   <defs>
-    <linearGradient id="premium-bg" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#1e1e1e;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0a0a0a;stop-opacity:1" />
-    </linearGradient>
-    
-    <linearGradient id="twitch-glow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#9146FF;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#6441a5;stop-opacity:1" />
-    </linearGradient>
-    
-    <linearGradient id="kick-glow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#5eff5e;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#23c023;stop-opacity:1" />
-    </linearGradient>
-    
-    <filter id="premium-glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="5" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    <!-- Glows and filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feFlood flood-color="#ffffff" result="glow" />
+      <feComposite in="glow" in2="blur" operator="in" result="softglow" />
+      <feComposite in="softglow" in2="SourceGraphic" operator="over" />
     </filter>
+    
+    <filter id="twitchGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feFlood flood-color="#9146ff" result="glow" />
+      <feComposite in="glow" in2="blur" operator="in" result="softglow" />
+      <feComposite in="softglow" in2="SourceGraphic" operator="over" />
+    </filter>
+    
+    <filter id="kickGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feFlood flood-color="#53c41a" result="glow" />
+      <feComposite in="glow" in2="blur" operator="in" result="softglow" />
+      <feComposite in="softglow" in2="SourceGraphic" operator="over" />
+    </filter>
+    
+    <!-- Gradient for shine effect -->
+    <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+      <animate attributeName="x1" from="-100%" to="100%" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="x2" from="0%" to="200%" dur="3s" repeatCount="indefinite" />
+    </linearGradient>
   </defs>
-
-  <!-- الخلفية الرئيسية -->
-  <rect x="0" y="0" width="1920" height="200" fill="url(#premium-bg)" />
   
-  <!-- زخرفة خلفية متموجة -->
-  <path d="M0,180 C320,150 640,190 960,170 C1280,150 1600,190 1920,160 L1920,200 L0,200 Z" fill="#111" opacity="0.7" class="pulse-bg" />
-  <path d="M0,190 C320,160 640,200 960,180 C1280,160 1600,200 1920,170 L1920,200 L0,200 Z" fill="#151515" opacity="0.5" class="pulse-bg fade-delay-1" />
-
-  <!-- خط الفصل الرئيسي -->
-  <rect x="960" y="30" width="1" height="140" fill="#333" />
-  
-  <!-- دوائر زخرفية في الخلفية -->
-  <circle cx="250" cy="50" r="30" fill="#9146FF" opacity="0.05" class="fade-in-out" />
-  <circle cx="350" cy="150" r="40" fill="#9146FF" opacity="0.05" class="fade-in-out fade-delay-1" />
-  <circle cx="150" cy="100" r="20" fill="#9146FF" opacity="0.05" class="fade-in-out fade-delay-2" />
-  
-  <circle cx="1670" cy="50" r="30" fill="#52E466" opacity="0.05" class="fade-in-out" />
-  <circle cx="1570" cy="150" r="40" fill="#52E466" opacity="0.05" class="fade-in-out fade-delay-1" />
-  <circle cx="1770" cy="100" r="20" fill="#52E466" opacity="0.05" class="fade-in-out fade-delay-2" />
-  
-  <!-- قسم تويتش - يسار -->
-  <g transform="translate(480, 100)">
-    <!-- خلفية دائرية متوهجة -->
-    <circle cx="0" cy="0" r="80" fill="url(#twitch-glow)" opacity="0.15" class="pulse-bg" />
-    <circle cx="0" cy="0" r="65" fill="#111" stroke="#9146FF" stroke-width="2" class="border-animate twitch-glow" />
-    
-    <!-- حلقة خارجية متحركة -->
-    <circle cx="0" cy="0" r="90" fill="none" stroke="#9146FF" stroke-width="1" opacity="0.3" class="twitch-rotate" />
-    <circle cx="0" cy="0" r="105" fill="none" stroke="#9146FF" stroke-width="1" opacity="0.2" class="twitch-rotate" style="animation-direction: reverse;" />
-    
-    <!-- شعار تويتش -->
-    <g transform="scale(0.07) translate(-600, -600)" class="twitch-glow">
-      <path d="M500,0L0,500v1000h350v500l500-500h400l750-750V0H500z M1750,650l-350,350h-350l-300,300v-300H500V200h1250V650z" fill="#9146FF"/>
-      <rect x="1150" y="400" width="200" height="400" fill="#9146FF"/>
-      <rect x="800" y="400" width="200" height="400" fill="#9146FF"/>
-    </g>
-    
-    <!-- اسم المستخدم بتصميم فائق الوضوح -->
-    <!-- طبقة خلفية سوداء كبيرة -->
-    <rect x="-170" y="70" width="340" height="60" rx="30" ry="30" fill="black" />
-    
-    <!-- إطار بلون تويتش نابض -->
-    <rect x="-160" y="75" width="320" height="50" rx="25" ry="25" fill="rgba(0,0,0,1)" stroke="#9146FF" stroke-width="4" class="twitch-glow" />
-    
-    <!-- طبقة إضاءة تحت النص -->
-    <rect x="-150" y="80" width="300" height="40" rx="20" ry="20" fill="rgba(145,70,255,0.1)" />
-    
-    <!-- النص مع تأثير ظل وحدود سميكة للوضوح المطلق -->
-    <text x="0" y="110" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle" stroke="#000" stroke-width="4" paint-order="stroke">@223V</text>
-    <!-- طبقة نص فوقية لمزيد من الوضوح -->
-    <text x="0" y="110" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">@223V</text>
-    
-    <!-- كلمة "تويتش" بالعربية -->
-    <text x="0" y="-80" font-family="Arial, sans-serif" font-size="20" fill="#9146FF" text-anchor="middle" font-weight="bold" class="twitch-glow">تويتش</text>
-  </g>
-
-  <!-- قسم كيك - يمين -->
-  <g transform="translate(1440, 100)">
-    <!-- خلفية دائرية متوهجة -->
-    <circle cx="0" cy="0" r="80" fill="url(#kick-glow)" opacity="0.15" class="pulse-bg" />
-    <circle cx="0" cy="0" r="65" fill="#111" stroke="#52E466" stroke-width="2" class="border-animate kick-glow" />
-    
-    <!-- حلقة خارجية متحركة -->
-    <circle cx="0" cy="0" r="90" fill="none" stroke="#52E466" stroke-width="1" opacity="0.3" class="kick-rotate" />
-    <circle cx="0" cy="0" r="105" fill="none" stroke="#52E466" stroke-width="1" opacity="0.2" class="kick-rotate" style="animation-direction: reverse;" />
-    
-    <!-- شعار كيك -->
-    <g transform="scale(2.5) translate(-10, -10)" class="kick-glow">
-      <rect x="-6" y="-10" width="3" height="20" fill="#52E466"/>
-      <rect x="-3" y="-6" width="3" height="3" fill="#52E466"/>
-      <rect x="0" y="-3" width="3" height="3" fill="#52E466"/>
-      <rect x="3" y="0" width="3" height="3" fill="#52E466"/>
-      <rect x="6" y="3" width="3" height="3" fill="#52E466"/>
-      <rect x="3" y="-10" width="3" height="3" fill="#52E466"/>
-      <rect x="6" y="-7" width="3" height="3" fill="#52E466"/>
-      <rect x="-3" y="3" width="3" height="3" fill="#52E466"/>
-      <rect x="0" y="6" width="3" height="3" fill="#52E466"/>
-      <rect x="3" y="9" width="3" height="3" fill="#52E466"/>
-      <rect x="6" y="12" width="3" height="3" fill="#52E466"/>
-    </g>
-    
-    <!-- اسم المستخدم بتصميم فائق الوضوح -->
-    <!-- طبقة خلفية سوداء كبيرة -->
-    <rect x="-170" y="70" width="340" height="60" rx="30" ry="30" fill="black" />
-    
-    <!-- إطار بلون كيك نابض -->
-    <rect x="-160" y="75" width="320" height="50" rx="25" ry="25" fill="rgba(0,0,0,1)" stroke="#52E466" stroke-width="4" class="kick-glow" />
-    
-    <!-- طبقة إضاءة تحت النص -->
-    <rect x="-150" y="80" width="300" height="40" rx="20" ry="20" fill="rgba(82,228,102,0.1)" />
-    
-    <!-- النص مع تأثير ظل وحدود سميكة للوضوح المطلق -->
-    <text x="0" y="110" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle" stroke="#000" stroke-width="4" paint-order="stroke">@UU66</text>
-    <!-- طبقة نص فوقية لمزيد من الوضوح -->
-    <text x="0" y="110" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">@UU66</text>
-    
-    <!-- كلمة "كيك" بالعربية -->
-    <text x="0" y="-80" font-family="Arial, sans-serif" font-size="20" fill="#52E466" text-anchor="middle" font-weight="bold" class="kick-glow">كيك</text>
+  <!-- Streamlined LIVE indicator -->
+  <g transform="translate(25, 40)" filter="url(#glow)">
+    <rect x="-20" y="-15" width="40" height="30" rx="15" fill="#ff0000" opacity="0.9" />
+    <circle cx="-10" cy="0" r="4" fill="#ffffff">
+      <animate attributeName="opacity" values="1;0.4;1" dur="1.5s" repeatCount="indefinite" />
+    </circle>
+    <text x="4" y="5" font-family="Arial, sans-serif" font-weight="bold" font-size="12" fill="white" text-anchor="middle">LIVE</text>
   </g>
   
-  <!-- علامة البث المباشر في المنتصف مع تحسين الوضوح -->
-  <g transform="translate(960, 100)">
-    <!-- خلفية دائرية أكبر وأوضح -->
-    <circle cx="0" cy="0" r="45" fill="black" />
-    <circle cx="0" cy="0" r="40" fill="rgba(30,30,30,0.9)" stroke="#ff3333" stroke-width="3" class="pulse-bg" />
-    
-    <!-- دائرة LIVE نابضة أكبر وأكثر سطوعًا -->
-    <circle cx="0" cy="0" r="18" fill="#ff3333" class="live-dot" />
-    
-    <!-- تأثير توهج إضافي حول الدائرة -->
-    <circle cx="0" cy="0" r="25" fill="none" stroke="#ff3333" stroke-width="2" opacity="0.5" class="pulse-bg" />
-    
-    <!-- نص LIVE أكبر وأوضح -->
-    <text x="0" y="60" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="white" text-anchor="middle" stroke="black" stroke-width="3" paint-order="stroke">LIVE</text>
-    <text x="0" y="60" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="white" text-anchor="middle">LIVE</text>
+  <!-- Twitch username badge -->
+  <g transform="translate(100, 25)">
+    <rect x="0" y="0" width="150" height="25" rx="5" fill="#9146ff" opacity="0.9">
+      <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite" />
+    </rect>
+    <!-- Shine effect -->
+    <rect x="0" y="0" width="150" height="25" rx="5" fill="url(#shine)" opacity="0.5" />
+    <!-- Twitch icon -->
+    <path d="M15,5 v15 h3 v-15 h-3 M22,5 v15 h3 v-15 h-3" fill="white" opacity="0.9" />
+    <text x="35" y="17" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="white" text-anchor="start" filter="url(#twitchGlow)">
+      TWITCH @223V
+    </text>
   </g>
   
-  <!-- زخارف إضافية -->
-  <rect x="0" y="0" width="1920" height="5" fill="#333" />
-  <rect x="0" y="195" width="1920" height="5" fill="#333" />
+  <!-- Kick username badge -->
+  <g transform="translate(100, 55)">
+    <rect x="0" y="0" width="150" height="25" rx="5" fill="#53c41a" opacity="0.9">
+      <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite" />
+    </rect>
+    <!-- Shine effect -->
+    <rect x="0" y="0" width="150" height="25" rx="5" fill="url(#shine)" opacity="0.5" />
+    <!-- Kick icon stylized -->
+    <path d="M15,5 l7,7.5 l-7,7.5 v-15 M25,5 l7,7.5 l-7,7.5 v-15" fill="white" opacity="0.9" />
+    <text x="35" y="17" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="white" text-anchor="start" filter="url(#kickGlow)">
+      KICK @UU66
+    </text>
+  </g>
   
-  <!-- شرائط متوهجة -->
-  <rect x="150" y="0" width="3" height="200" fill="#9146FF" opacity="0.5" class="twitch-glow" />
-  <rect x="1770" y="0" width="3" height="200" fill="#52E466" opacity="0.5" class="kick-glow" />
+  <!-- Minimal decorative elements -->
+  <circle cx="300" cy="40" r="15" fill="none" stroke="#ff416c" stroke-width="2" opacity="0.8">
+    <animate attributeName="r" values="15;17;15" dur="4s" repeatCount="indefinite" />
+  </circle>
+  
+  <circle cx="350" cy="40" r="20" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.8;0.6" dur="3s" repeatCount="indefinite" />
+  </circle>
+  
+  <circle cx="400" cy="40" r="12" fill="none" stroke="#53c41a" stroke-width="1.5" opacity="0.7">
+    <animate attributeName="r" values="12;14;12" dur="5s" repeatCount="indefinite" />
+  </circle>
+  
+  <circle cx="450" cy="40" r="10" fill="none" stroke="#9146ff" stroke-width="1.5" opacity="0.7">
+    <animate attributeName="r" values="10;12;10" dur="4.5s" repeatCount="indefinite" />
+  </circle>
 </svg>
